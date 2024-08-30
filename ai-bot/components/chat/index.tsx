@@ -143,7 +143,7 @@ const Chat = ({
       {/* minimize button */}
       {variant === "float" && (
         <MinimizeIcon
-          className="size-6 absolute top-4 right-6 z-50 cursor-pointer duration-200 fill-next-ai-bot-color-04 lg:hover:fill-next-ai-bot-color-07"
+          className="size-6 absolute top-4 right-6 z-50 cursor-pointer duration-200 fill-next-ai-bot-color-04 lg:hover:fill-next-ai-bot-color-06"
           onClick={() => !!onHandle && onHandle("closed")}
         />
       )}
@@ -219,7 +219,7 @@ const Chat = ({
               className={`text-xs px-4 md:px-6 ${
                 currentLimit > 0
                   ? "text-next-ai-bot-color-04"
-                  : "text-next-ai-bot-color-08"
+                  : "text-next-ai-bot-color-07"
               }`}
             >
               {currentLimit > 0

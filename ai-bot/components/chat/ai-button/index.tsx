@@ -71,7 +71,7 @@ const AiButton = ({
 
   return (
     <button className={button({ status, className })} {...props}>
-      <div className="relative flex items-center justify-center rounded-2xl size-12 z-10 bg-gradient-to-br from-next-ai-bot-color-07 via-next-ai-bot-color-01 to-next-ai-bot-color-08">
+      <div className="relative flex items-center justify-center rounded-2xl size-12 z-10 bg-gradient-to-br from-next-ai-bot-color-06 via-next-ai-bot-color-01 to-next-ai-bot-color-07">
         <BrainIcon className="size-6 fill-next-ai-bot-color-04 duration-200 lg:group-hover:scale-110" />
       </div>
 

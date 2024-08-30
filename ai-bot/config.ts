@@ -15,9 +15,8 @@ export const Config: ConfigType = {
       "next-ai-bot-color-03": "#000000",
       "next-ai-bot-color-04": "#FFF",
       "next-ai-bot-color-05": "#a47ff5",
-      "next-ai-bot-color-06": "#29292f",
-      "next-ai-bot-color-07": "#3fb9fb",
-      "next-ai-bot-color-08": "#EC105F",
+      "next-ai-bot-color-06": "#3fb9fb",
+      "next-ai-bot-color-07": "#EC105F",
     },
   },
   width: {

@@ -20,7 +20,7 @@ const avatar = tv({
       user: "bg-next-ai-bot-color-01",
       system: "bg-next-ai-bot-color-03",
       assistant:
-        "bg-gradient-to-br from-next-ai-bot-color-07 via-next-ai-bot-color-01 to-next-ai-bot-color-08",
+        "bg-gradient-to-br from-next-ai-bot-color-06 via-next-ai-bot-color-01 to-next-ai-bot-color-07",
       data: "bg-next-ai-bot-color-03",
       tool: "bg-next-ai-bot-color-03",
     },
