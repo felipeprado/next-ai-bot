@@ -33,9 +33,3 @@ export async function POST(request: NextRequest) {
     );
   }
 }
-
-export function middleware(request: NextRequest) {
-  if (request.method !== "POST") {
-    return NextResponse.json({ error: "Method not allowed" }, { status: 405 });
-  }
-}
