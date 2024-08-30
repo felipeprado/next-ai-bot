@@ -18,6 +18,9 @@ import AiButton from "@next-ai-bot/components/chat/ai-button";
 //config
 import { Config } from "./config";
 
+//services
+import { fetchCryptography } from "./services/cryptography.service";
+
 //context
 const AIBotContext = createContext<useAIProps | null>({} as useAIProps);
 
@@ -44,6 +47,7 @@ export const AIBotProvider = ({ children }: AIBotProviderProps) => {
   const [data, setData] = useState<DataType>({ status: "closed" });
   const [hideButton, setHideButton] = useState<boolean>(true);
   const [questionLimit, setQuestionLimit] = useState<number | null>(null);
+  const localStorageKey = "@nab";
 
   useEffect(() => {
     if (!!Config.floatButton?.show && Config.floatButton?.showAfterScroll) {
@@ -56,6 +60,7 @@ export const AIBotProvider = ({ children }: AIBotProviderProps) => {
         }
       };
 
+      handleScroll();
       window.addEventListener("scroll", handleScroll);
 
       return () => {
@@ -68,43 +73,77 @@ export const AIBotProvider = ({ children }: AIBotProviderProps) => {
 
   //fetch and renew limit
   useEffect(() => {
-    const fetchBotLocalStorage = localStorage.getItem("@next-ai-bot");
+    const fetchBotLocalStorage = localStorage.getItem(localStorageKey);
 
     if (fetchBotLocalStorage) {
-      const res = JSON.parse(fetchBotLocalStorage);
-      const limit = Number(res.limit);
-      const date = res.date ? dayjs(res.date) : null;
+      fetchCryptography({ data: fetchBotLocalStorage, type: "decrypt" }).then(
+        (res) => {
+          if (res) {
+            const ls = JSON?.parse(res);
+            const limit = Number(ls.limit);
+            const date = ls.date ? dayjs(ls.date) : null;
 
-      if (date?.format("DD/MM/YYYY") !== dayjs().format("DD/MM/YYYY")) {
-        localStorage.setItem(
-          "@next-ai-bot",
-          JSON.stringify({ date: dayjs(), limit: Config.questionsLimit })
-        );
-      } else {
-        setQuestionLimit(limit);
-      }
+            if (date?.format("DD/MM/YYYY") !== dayjs().format("DD/MM/YYYY")) {
+              fetchCryptography({
+                data: JSON.stringify({
+                  date: dayjs(),
+                  limit: Config.questionsLimit,
+                }),
+                type: "encrypt",
+              }).then((res) => {
+                if (res) {
+                  localStorage.setItem(localStorageKey, res);
+                }
+              });
+            } else {
+              setQuestionLimit(limit);
+            }
+          }
+        }
+      );
     } else {
       setQuestionLimit(Config.questionsLimit);
     }
   }, []);
 
   //update limit when user send a new question
-  const updateLimit = () => {
+  const updateLimit = async () => {
     if (questionLimit) {
       let count = questionLimit - 1;
       count = count > 0 ? count : 0;
       setQuestionLimit(count);
 
-      const fetchBotLocalStorage = localStorage.getItem("@next-ai-bot");
+      const fetchBotLocalStorage = localStorage.getItem(localStorageKey);
 
-      const res = fetchBotLocalStorage
-        ? JSON.parse(fetchBotLocalStorage)
-        : null;
+      if (fetchBotLocalStorage) {
+        //decrypt local storage data
+        fetchCryptography({ data: fetchBotLocalStorage, type: "decrypt" }).then(
+          (res) => {
+            if (res) {
+              const data = JSON.stringify({
+                ...JSON?.parse(res),
+                limit: count,
+              });
 
-      localStorage.setItem(
-        "@next-ai-bot",
-        JSON.stringify({ ...res, limit: count })
-      );
+              fetchCryptography({
+                data,
+                type: "encrypt",
+              }).then((res) => {
+                if (res) {
+                  localStorage.setItem(localStorageKey, res);
+                }
+              });
+            }
+          }
+        );
+      } else {
+        const data = JSON.stringify({ date: dayjs(), limit: count });
+        fetchCryptography({ data, type: "encrypt" }).then((res) => {
+          if (res) {
+            localStorage.setItem(localStorageKey, res);
+          }
+        });
+      }
     }
   };
 

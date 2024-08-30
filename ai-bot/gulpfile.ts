@@ -32,7 +32,7 @@ gulp.task("tailwind", async () => {
       )
       .pipe(
         replace(
-          'import {Config as ConfigAi} from "./src/app/ai-bot/config";\n',
+          "import {Config as ConfigAi} from './src/app/ai-bot/config';\n",
           ""
         )
       )
@@ -241,6 +241,28 @@ gulp.task("next-ai-bot-api", async () => {
         }
       });
     }
+  });
+
+  fs.access("../api/crypto", fs.constants.R_OK, (err: object) => {
+    exec("mv ./api/crypto ../api", (err: object) => {
+      if (err) {
+        console.log(
+          "\x1b[31m%s\x1b[0m",
+          `\n\n❌ ERROR: ${JSON.stringify(err)}.\n\n`
+        );
+      }
+      //exclude api folder inside ai-bot folder
+      else {
+        exec("rm -rf api", (err: object) => {
+          if (err) {
+            console.log(
+              "\x1b[31m%s\x1b[0m",
+              `\n\n❌ ERROR: ${JSON.stringify(err)}.\n\n`
+            );
+          }
+        });
+      }
+    });
   });
 });
 

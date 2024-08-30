@@ -1,7 +1,7 @@
-import { ComponentProps } from "react";
+import { ComponentProps, useRef } from "react";
 
 //components
-import Lottie from "lottie-react";
+import Lottie, { LottieRef } from "lottie-react";
 import { tv, VariantProps } from "tailwind-variants";
 
 //images
@@ -65,6 +65,10 @@ const AiButton = ({
   className,
   ...props
 }: ComponentProps<"button"> & VariantProps<typeof button>) => {
+  const sparkRef: LottieRef = useRef(null);
+
+  sparkRef.current?.setSpeed(3);
+
   return (
     <button className={button({ status, className })} {...props}>
       <div className="relative flex items-center justify-center rounded-2xl size-12 z-10 bg-gradient-to-br from-next-ai-bot-color-07 via-next-ai-bot-color-01 to-next-ai-bot-color-08">
@@ -72,9 +76,17 @@ const AiButton = ({
       </div>
 
       <Lottie
+        lottieRef={sparkRef}
         animationData={SparkLottie}
         loop
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-y-[-1] select-none pointer-events-none z-0 w-[110%]"
+      />
+
+      <Lottie
+        lottieRef={sparkRef}
+        animationData={SparkLottie}
+        loop
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-90 select-none pointer-events-none z-0 w-[110%]"
       />
 
       <span className="absolute top-full left-1/2 -translate-x-1/2 -translate-y-1/2 text-next-ai-bot-color-04 text-[9px] font-bold rounded-lg  pr-[8px] pl-[8px] bg-next-ai-bot-color-02 z-20">
