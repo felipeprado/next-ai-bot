@@ -62,7 +62,7 @@ const chat = tv({
     },
     variant: {
       float:
-        "fixed z-50 pt-12 origin-bottom-right ease-in-out duration-500 bottom-next-ai-bot-bottom-init sm:bottom-next-ai-bot-bottom-sm md:bottom-next-ai-bot-bottom-md lg:bottom-next-ai-bot-bottom-lg xl:bottom-next-ai-bot-bottom-xl 2xl:bottom-next-ai-bot-bottom-2xl right-next-ai-bot-right-init sm:right-next-ai-bot-right-sm md:right-next-ai-bot-right-md lg:right-next-ai-bot-right-lg xl:right-next-ai-bot-right-xl 2xl:right-next-ai-bot-right-2xl top-next-ai-bot-top-init sm:top-next-ai-bot-top-sm md:top-next-ai-bot-top-md lg:top-next-ai-bot-top-lg xl:top-next-ai-bot-top-xl 2xl:top-next-ai-bot-top-2xl left-next-ai-bot-left-init sm:left-next-ai-bot-left-sm md:left-next-ai-bot-left-md lg:left-next-ai-bot-left-lg xl:left-next-ai-bot-left-xl 2xl:left-next-ai-bot-left-2x",
+        "fixed z-50 pt-10 md:pt-12 origin-bottom-right ease-in-out duration-500 bottom-next-ai-bot-bottom-init sm:bottom-next-ai-bot-bottom-sm md:bottom-next-ai-bot-bottom-md lg:bottom-next-ai-bot-bottom-lg xl:bottom-next-ai-bot-bottom-xl 2xl:bottom-next-ai-bot-bottom-2xl right-next-ai-bot-right-init sm:right-next-ai-bot-right-sm md:right-next-ai-bot-right-md lg:right-next-ai-bot-right-lg xl:right-next-ai-bot-right-xl 2xl:right-next-ai-bot-right-2xl top-next-ai-bot-top-init sm:top-next-ai-bot-top-sm md:top-next-ai-bot-top-md lg:top-next-ai-bot-top-lg xl:top-next-ai-bot-top-xl 2xl:top-next-ai-bot-top-2xl left-next-ai-bot-left-init sm:left-next-ai-bot-left-sm md:left-next-ai-bot-left-md lg:left-next-ai-bot-left-lg xl:left-next-ai-bot-left-xl 2xl:left-next-ai-bot-left-2x",
       static: "",
     },
   },
@@ -143,7 +143,7 @@ const Chat = ({
       {/* minimize button */}
       {variant === "float" && (
         <MinimizeIcon
-          className="size-6 absolute top-4 right-6 z-50 cursor-pointer duration-200 fill-next-ai-bot-color-04 lg:hover:fill-next-ai-bot-color-06"
+          className="size-4 md:size-6 absolute top-4 right-6 z-50 cursor-pointer duration-200 fill-next-ai-bot-color-04 lg:hover:fill-next-ai-bot-color-06"
           onClick={() => !!onHandle && onHandle("closed")}
         />
       )}
