@@ -21,4 +21,5 @@ Docs are available on [Next AI Bot website](https://nextaibot.felipeprado.com.br
 
 I hope so. I have worked hard on this UI, and if you wanna help with any value, I will feel very grateful.
 <br/>
+<br/>
 <a href="https://www.buymeacoffee.com/felipeprado" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-violet.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
