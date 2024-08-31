@@ -55,6 +55,7 @@ export const AIBotProvider = ({ children }: AIBotProviderProps) => {
         const position = window.scrollY;
         if (position < (Config.floatButton.showAfterScroll || 0)) {
           setHideButton(true);
+          setStatus("closed");
         } else {
           setHideButton(false);
         }
@@ -158,16 +159,12 @@ export const AIBotProvider = ({ children }: AIBotProviderProps) => {
 
   //change modal status to opened or closed
   const setStatus = (status: StatusType) => {
-    if (status !== data?.status) {
-      setData({ ...data, status });
-    }
+    setData({ ...data, status: status });
   };
 
   //when open/close modal
   const onHandle = (status: StatusType) => {
-    if (status !== data?.status) {
-      setData({ ...data, status: status });
-    }
+    setData({ ...data, status: status });
   };
 
   return (
