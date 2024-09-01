@@ -26,6 +26,12 @@ gulp.task("tailwind", async () => {
       //remove ai config import
       .pipe(
         replace(
+          'import {Config as ConfigAi} from "./src/app/ai-bot/config";\n',
+          ""
+        )
+      )
+      .pipe(
+        replace(
           'import { Config as ConfigAi } from "./src/app/ai-bot/config";\n',
           ""
         )
@@ -33,6 +39,12 @@ gulp.task("tailwind", async () => {
       .pipe(
         replace(
           "import {Config as ConfigAi} from './src/app/ai-bot/config';\n",
+          ""
+        )
+      )
+      .pipe(
+        replace(
+          "import { Config as ConfigAi } from './src/app/ai-bot/config';\n",
           ""
         )
       )
@@ -296,9 +308,9 @@ gulp.task("insert-context", async () => {
       .pipe(replace('import { AIBotProvider } from "@next-ai-bot";\n', ""))
       .pipe(replace("<AIBotProvider>{children}</AIBotProvider>", "{children}"))
       .pipe(replace("{children}", "<AIBotProvider>{children}</AIBotProvider>"))
-      .pipe(gulp.dest(layoutPath.replace("layout.tsx", "")))
+      .pipe(gulp.dest((file: any) => file.base))
       .pipe(insert.prepend('import { AIBotProvider } from "@next-ai-bot";\n'))
-      .pipe(gulp.dest(layoutPath.replace("layout.tsx", "")))
+      .pipe(gulp.dest((file: any) => file.base))
       .on("end", () => {
         console.log(
           "\x1b[32m%s\x1b[0m",

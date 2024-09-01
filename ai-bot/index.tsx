@@ -53,7 +53,7 @@ export const AIBotProvider = ({ children }: AIBotProviderProps) => {
     if (!!Config.floatButton?.show && Config.floatButton?.showAfterScroll) {
       const handleScroll = () => {
         const position = window.scrollY;
-        if (position < (Config.floatButton.showAfterScroll || 0)) {
+        if (position < (Config.floatButton?.showAfterScroll || 0)) {
           setHideButton(true);
           setStatus("closed");
         } else {

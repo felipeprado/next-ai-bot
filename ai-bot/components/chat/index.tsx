@@ -217,6 +217,7 @@ const Chat = ({
                 disabled={!useAIBot.currentLimit}
               />
               <button
+                type="submit"
                 className="absolute right-2 top-1/2 -translate-y-1/2 size-8 md:size-12 bg-next-ai-bot-color-01 rounded-full flex items-center justify-center duration-200 lg:hover:bg-next-ai-bot-color-05 group"
                 disabled={!useAIBot.currentLimit}
               >
