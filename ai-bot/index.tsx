@@ -85,6 +85,8 @@ export const AIBotProvider = ({ children }: AIBotProviderProps) => {
             const date = ls.date ? dayjs(ls.date) : null;
 
             if (date?.format("DD/MM/YYYY") !== dayjs().format("DD/MM/YYYY")) {
+              setQuestionLimit(Config.questionsLimit);
+
               fetchCryptography({
                 data: JSON.stringify({
                   date: dayjs(),
