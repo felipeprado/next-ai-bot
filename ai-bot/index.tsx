@@ -101,6 +101,8 @@ export const AIBotProvider = ({ children }: AIBotProviderProps) => {
             } else {
               setQuestionLimit(limit);
             }
+          } else {
+            setQuestionLimit(Config.questionsLimit);
           }
         }
       );
