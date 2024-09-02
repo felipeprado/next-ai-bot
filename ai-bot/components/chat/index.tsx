@@ -206,7 +206,10 @@ const Chat = ({
                   ? "opacity-40 select-none pointer-events-none"
                   : ""
               }`}
-              onSubmit={handleSubmit}
+              onSubmit={(e) => {
+                e.preventDefault();
+                if (currentLimit !== null && currentLimit > 0) handleSubmit();
+              }}
             >
               <input
                 type="text"
